@@ -21,5 +21,3 @@ task buildSrcFolders {
 		mkdir("src/test/java")
 	}
 }
-
-tasks.eclipse.dependsOn buildSrcFolders
