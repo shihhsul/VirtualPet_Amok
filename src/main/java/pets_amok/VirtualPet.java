@@ -1,6 +1,6 @@
 package pets_amok;
 
-abstract class VirtualPet {
+public abstract class VirtualPet {
     private String name;
     private String description;
     private int hunger;
@@ -9,8 +9,6 @@ abstract class VirtualPet {
     private int waste;
     private int boredom;
     private int sickness;
-    private int happiness;
-    private int health;
 
     public VirtualPet(String name, String description){
         this.name = name;
@@ -37,8 +35,13 @@ abstract class VirtualPet {
     public void visitDoctor(){
         sickness = 0;
     }
-    public abstract void tick();
-    
+    public void tick() {
+        hunger += 5;
+        thirst += 5;
+        waste += 5;
+        boredom += 5;
+        sickness += 5;
+    }
     public int getHunger() {
         return hunger;
     }
@@ -69,48 +72,9 @@ abstract class VirtualPet {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setHunger(int hunger) {
-        this.hunger = hunger;
-    }
-    public void setThirst(int thirst) {
-        this.thirst = thirst;
-    }
-    public void setWaste(int waste) {
-        this.waste = waste;
-    }
-    public void setBoredom(int boredom) {
-        this.boredom = boredom;
-    }
-    public void setSickness(int sickness) {
-        this.sickness = sickness;
-    }
-
-    public int getHappiness() {
-        return this.happiness;
-    }
-
-    public void setHappiness(int happiness) {
-        this.happiness = happiness;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-    public void increaseHappiness() {
-        this.happiness +=10;
-    }
-    public void decreaseHealth() {
-        this.health-=10;
-    }
-    public void increaseHealth() {
-        this.health+=10;
-    }
     public abstract void oil();
     public abstract void walk();
     public abstract int cleanLitterBox();
     public abstract void updateHealth();
 }
+

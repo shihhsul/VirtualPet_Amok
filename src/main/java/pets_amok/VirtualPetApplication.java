@@ -1,16 +1,18 @@
 package pets_amok;
-
 import java.util.Scanner;
 
 public class VirtualPetApplication {
     public static void main(String[] args) {
         VirtualPetShelter shelter = new VirtualPetShelter();
-        VirtualPet pet1 = new OrganicDog("Buddy", "A friendly dog");
-        VirtualPet pet2 = new RoboticCat("Whiskers", "A playful cat");
-        // Add more pets as needed
+        VirtualPet pet1 = new OrganicDog("Joey", "A playful dog.");
+        VirtualPet pet2 = new OrganicCat("Johnny", "A friendly cat.");
+        VirtualPet pet3 = new RoboticDog("Dee Dee", "A curious robot.");
+        VirtualPet pet4 = new RoboticCat("Tommy", "A lazy robot.");
 
         shelter.intakePet(pet1);
         shelter.intakePet(pet2);
+        shelter.intakePet(pet3);
+        shelter.intakePet(pet4);
 
         System.out.println("Thank you for volunteering at Big Al's Virtual Pet Shelter and Delicatessen!");
 
@@ -22,12 +24,15 @@ public class VirtualPetApplication {
             System.out.println("2. Water the pets");
             System.out.println("3. Play with a pet");
             System.out.println("4. Adopt a pet");
-            System.out.println("5. Admit a pet");
-            System.out.println("6. Oil all robotic pets");
-            System.out.println("7. Walk all dogs");
-            System.out.println("8. Clean dog cages");
-            System.out.println("9. Clean the shelter litter box");
-            System.out.println("10. Quit");
+            System.out.println("5. Admit a Organic Cat");
+            System.out.println("6. Admit a Organic Dog");
+            System.out.println("7. Admit a Robotic Cat");
+            System.out.println("8. Admit a Robotic Dog");
+            System.out.println("9. Oil all robotic pets");
+            System.out.println("10. Walk all dogs");
+            System.out.println("11. Clean dog cages");
+            System.out.println("12. Clean the shelter litter box");
+            System.out.println("13. Quit");
 
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
@@ -47,21 +52,30 @@ public class VirtualPetApplication {
                 adoptPet(shelter, scanner);
                 break;
             case 5:
-                admitPet(shelter, scanner);
+                admitocat(shelter, scanner);
                 break;
             case 6:
-                shelter.oilAllRoboticPets();
+                admitodog(shelter, scanner);
                 break;
             case 7:
-                shelter.walkAllDogs();
+                admitRcat(shelter, scanner);
                 break;
             case 8:
-                shelter.cleanDogCages();
-                break;
+                admitRdog(shelter, scanner);
+                break;                
             case 9:
-                shelter.cleanLitterBox();
+                shelter.oilAllRoboticPets();
                 break;
             case 10:
+                shelter.walkAllDogs();
+                break;
+            case 11:
+                shelter.cleanDogCages();
+                break;
+            case 12:
+                shelter.cleanLitterBox();
+                break;
+            case 13:
                 System.out.println("Thank you for visiting the Virtual Pet Shelter!");
                 scanner.close();
                 System.exit(0);
@@ -81,7 +95,7 @@ public class VirtualPetApplication {
             System.out.println(pet.getName() + "\t|" + pet.getHunger() + "\t|" + pet.getThirst() + "\t|" + pet.getBoredom());
         }
     }
-    
+
     private static void playWithPet(VirtualPetShelter shelter, Scanner scanner) {
         System.out.println("\nAvailable pets to play with:");
         for (VirtualPet pet : shelter.getAllPets()) {
@@ -99,6 +113,7 @@ public class VirtualPetApplication {
         }
     }
 
+
     private static void adoptPet(VirtualPetShelter shelter, Scanner scanner) {
         System.out.println("\nSure! Here are the pets available for adoption:\n");
         for (VirtualPet pet : shelter.getAllPets()) {
@@ -110,16 +125,45 @@ public class VirtualPetApplication {
         System.out.println("\nCongratulations! You have adopted " + petName + ".");
     }
 
-    private static void admitPet(VirtualPetShelter shelter, Scanner scanner) {
+    private static void admitocat(VirtualPetShelter shelter, Scanner scanner) {
         System.out.println("\nWe appreciate your kindness. Please provide the pet's information:\n");
         System.out.print("Name: ");
         String name = scanner.nextLine();
         System.out.print("Description: ");
         String description = scanner.nextLine();
-        VirtualPet newPet = new VirtualPet(name, description);
+        VirtualPet newPet = new OrganicCat(name, description);
+        shelter.intakePet(newPet);
+        System.out.println("\nWelcome to the shelter, " + name + "!");
+    }
+        private static void admitodog(VirtualPetShelter shelter, Scanner scanner) {
+        System.out.println("\nWe appreciate your kindness. Please provide the pet's information:\n");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+        VirtualPet newPet = new OrganicDog(name, description);
+        shelter.intakePet(newPet);
+        System.out.println("\nWelcome to the shelter, " + name + "!");
+    }
+        private static void admitRcat(VirtualPetShelter shelter, Scanner scanner) {
+        System.out.println("\nWe appreciate your kindness. Please provide the pet's information:\n");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+        VirtualPet newPet = new RoboticCat(name, description);
+        shelter.intakePet(newPet);
+        System.out.println("\nWelcome to the shelter, " + name + "!");
+    }
+        private static void admitRdog(VirtualPetShelter shelter, Scanner scanner) {
+        System.out.println("\nWe appreciate your kindness. Please provide the pet's information:\n");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+        VirtualPet newPet = new RoboticDog(name, description);
         shelter.intakePet(newPet);
         System.out.println("\nWelcome to the shelter, " + name + "!");
     }
     
 }
-

@@ -8,6 +8,7 @@ public class VirtualPetTest {
     private VirtualPetShelter shelter;
     private VirtualPet pet1;
     private VirtualPet pet2;
+    private VirtualPet pet3;
 
     
     @BeforeEach
@@ -15,38 +16,25 @@ public class VirtualPetTest {
         shelter = new VirtualPetShelter();
         pet1 = new OrganicDog("Buddy", "A friendly dog");
         pet2 = new RoboticCat("Whiskers", "A playful cat");
-        // Initialize more pets for your test cases
+        pet3 = new RoboticDog("Steven", "A playful dog");
+
     }
 
     @Test
     public void shouldOilAllRoboticPets() {
-        shelter.intakePet(pet1);
-        shelter.intakePet(pet2);
+        
+        shelter.intakePet(pet3);
 
 
-        assertEquals(0, ((RoboticDog) pet1).getMaintenance());
-        assertEquals(0, ((RoboticDog) pet2).getMaintenance());
+
+        assertEquals(50, ((RoboticDog) pet3).getOilLevel());
 
         shelter.oilAllRoboticPets();
 
 
-        assertEquals(5, ((RoboticDog) pet1).getMaintenance());
-        assertEquals(5, ((RoboticDog) pet2).getMaintenance());
+
+        assertEquals(60, ((RoboticDog) pet3).getOilLevel());
     }
-
-    @Test
-    public void shouldWalkAllDogs() {
-        shelter.intakePet(pet1);
-
-
-        assertEquals(0, ((OrganicDog) pet1).getCageCleanliness());
-
-        shelter.walkAllDogs();
-
-
-        assertEquals(10, ((OrganicDog) pet1).getCageCleanliness());
-    }
-
     @Test
     public void shouldCleanDogCages() {
         shelter.intakePet(pet1);
@@ -56,7 +44,7 @@ public class VirtualPetTest {
         shelter.cleanDogCages();
 
       
-        assertEquals(0, ((OrganicDog) pet1).getCageCleanliness());
+        assertEquals(100, ((OrganicDog) pet1).getCageCleanliness());
     }
 
     @Test

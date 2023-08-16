@@ -61,7 +61,7 @@ class VirtualPetShelter {
     public void walkAllDogs() {
         for (VirtualPet pet : pets.values()) {
             if (pet instanceof OrganicDog) {
-                pet.walk();
+                ((OrganicDog) pet).walk();
             }
         }
     }
@@ -93,5 +93,4 @@ class VirtualPetShelter {
     public void setLitterBoxCleanliness(int litterBoxCleanliness) {
         this.litterBoxCleanliness = litterBoxCleanliness;
     }
-
 }
